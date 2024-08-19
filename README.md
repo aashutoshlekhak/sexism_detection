@@ -26,6 +26,19 @@ The project structure is as follows:
 
 **Note: It may be changed in future according to the needs.**
 
+## Setting up environment
+
+1. Install requirements 
+```bash
+pip install -r requirements.txt
+```
+
+2. Install Javascript runtime (for translators):
+```bash
+sudo apt update
+sudo apt install nodejs
+```
+
 
 
 
