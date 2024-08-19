@@ -1,23 +1,23 @@
 base:
-  random_seed: 42
+  random_seed: 31
 data:
   exist:
-      task_one:
-        raw: path/to/raw.csv
-        preprocessed: path/to/preprocessed.csv
-        augmented: path/to/augmented.csv
+    raw: data/raw/exist/EXIST2021_training.tsv
+    preprocessed: data/preprocessed/exist/EXIST2021_training_preprocessed.csv
+    augmented: data/augmented/exist/EXIST2021_training_augmented.csv
+    aug_preprocessed: data/augmented/exist/EXIST2021_training_augmented_preprocessed.csv
   csmb:
-    raw: path/to/raw.csv
+    raw: data/raw/csmb/sexism_data.csv
     processed: path/to/processed.csv
-base_model:
-  model_arch: path/to/hugging_face/models
-trained_models:
-  exist:
-    task_one:
-      model_dir: path/to/model
-  csmb:
-    model_dir: path/to/model
-reports:
-  metrics: /path/to/save/metrics.json
-  loss_plot: /path/to/save/loss_curves.png
-  logs: /path/to/save/logs.log
+# base_model:
+#   model_arch: path/to/hugging_face/models
+# trained_models:
+#   exist:
+#     task_one:
+#       model_dir: path/to/model
+#   csmb:
+#     model_dir: path/to/model
+# reports:
+#   metrics: /path/to/save/metrics.json
+#   loss_plot: /path/to/save/loss_curves.png
+#   logs: /path/to/save/logs.log
