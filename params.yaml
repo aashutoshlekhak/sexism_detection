@@ -9,8 +9,14 @@ data:
   csmb:
     raw: data/raw/csmb/sexism_data.csv
     preprocessed: data/preprocessed/csmb/sexism_data.csv
-# base_model:
-#   model_arch: path/to/hugging_face/models
+base_model:
+  distil_bert: distilbert-base-uncased
+  hyper_params:
+    batch_size: 16
+    epochs: 10
+    lr: 2e-5
+    wt_deacy: 0.01
+
 # trained_models:
 #   exist:
 #     task_one:
