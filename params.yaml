@@ -27,3 +27,17 @@ base_model:
 #   metrics: /path/to/save/metrics.json
 #   loss_plot: /path/to/save/loss_curves.png
 #   logs: /path/to/save/logs.log
+class_label:
+  task1:
+  - non-sexist
+  - sexist
+  task2:
+  - ideological-inequality
+  - misogyny-non-sexual-violence
+  - non-sexist
+  - objectification
+  - sexual-violence
+  - stereotyping-dominance
+  csmb:
+  - 'False'
+  - 'True'
