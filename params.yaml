@@ -10,12 +10,13 @@ data:
     raw: data/raw/csmb/sexism_data.csv
     preprocessed: data/preprocessed/csmb/sexism_data.csv
 base_model:
-  distil_bert: distilbert-base-uncased
-  hyper_params:
-    batch_size: 16
-    epochs: 10
-    lr: 2e-5
-    wt_deacy: 0.01
+  distil_bert: 
+    model: distilbert-base-uncased
+    hyper_params:
+      batch_size: 16
+      epochs: 1
+      lr: 2e-5
+      wt_deacy: 0.01
 
 # trained_models:
 #   exist:
