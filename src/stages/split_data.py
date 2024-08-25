@@ -7,9 +7,7 @@ from sklearn.model_selection import KFold
 from typing import Optional
 from loguru import logger
 sys.path.insert(0, os.getcwd())
-from src.utils.utils import load_yaml, append_to_yaml
-
-
+from src.utils.utils import load_yaml
 
 def split_data(config_path:str, data_name:str,data_type:str)->None:
     """ Splits the data saved in Dataset format into 10 folds and saves it

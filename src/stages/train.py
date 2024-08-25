@@ -13,10 +13,7 @@ from pathlib import Path
 from loguru import logger
 from typing import Optional
 sys.path.insert(0, os.getcwd())
-from src.utils.utils import load_yaml
-
-
-## TODO: 2. Save loss, metrics and reports in proper format
+from src.utils.utils import load_yaml, visualize_trainer
 
 def compute_metrics(pred):
     labels = pred.label_ids
@@ -71,10 +68,14 @@ def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:in
     logger.info("Dataset Loaded")
 
     data_encoded = fold_data.map(tokenize, batched=True, batch_size=None)
+    if task:
+        output_dir = os.path.join("models", model_name, data_type,data_name,task,f"fold_{fold}")
+    else:
+        output_dir = os.path.join("models", model_name, data_type,data_name,f"fold_{fold}")
 
-    logging_steps = len(data_encoded) // batch_size
-
-    model_name = f"models/{model_ckpt}-finetuned-exist21-{fold}"
+    os.makedirs(output_dir, exist_ok=True)
+    output_dir = os.makedirs(os.path.join("models", f"{model_name}/{data_type}/{fold}")) # models/distil-bert/raw/fold/
+    model_name = f"{output_dir}/{model_ckpt}"
 
     training_args = TrainingArguments(output_dir=model_name,
                                 num_train_epochs=epochs,
@@ -82,9 +83,10 @@ def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:in
                                 per_device_train_batch_size=batch_size,
                                 per_device_eval_batch_size=batch_size,
                                 weight_decay=wt_deacy,
-                                eval_strategy="epoch",
+                                logging_strategy='epoch',
+                                eval_strategy = 'epoch',
+                                save_strategy = 'epoch',
                                 disable_tqdm=False,
-                                logging_steps=logging_steps,
                                 push_to_hub=False,
                                 log_level="error")
 
@@ -102,8 +104,19 @@ def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:in
 
     log_history = pd.DataFrame(trainer.state.log_history)
 
-    log_history.to_csv(f"src/logs/{model_name}.csv", index=False)
-    logger.info(f"Logs saved at src/logs/{model_name}.csv")
+    if task:
+        log_dir = os.path.join("src/logs", model_name, data_type,data_name,task)
+    else:
+        log_dir = os.path.join("src/logs", model_name, data_type,data_name)
+    
+    os.makedirs(log_dir, exist_ok=True)
+
+    log_path = f"{log_dir}/fold_{fold}.csv"
+
+    log_history.to_csv(log_path, index=False)
+    logger.info(f"Logs saved at {log_path}")
+
+    visualize_trainer(log_path)
 
 if __name__=="__main__":
     arg_parser = argparse.ArgumentParser()
@@ -116,6 +129,3 @@ if __name__=="__main__":
 
     args = arg_parser.parse_args()
     train(args.config, args.data_name, args.data_type,args.model, int(args.fold),args.task) 
-
-
-
