@@ -6,8 +6,10 @@ import torch
 from transformers import Trainer, TrainingArguments
 from sklearn.metrics import accuracy_score, f1_score
 import numpy as np
+import pandas as pd
 import yaml
 import argparse
+from pathlib import Path
 from loguru import logger
 from typing import Optional
 sys.path.insert(0, os.getcwd())
@@ -24,7 +26,7 @@ def compute_metrics(pred):
     return {"accuracy": acc, "f1": f1}
 
 def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:int, task:Optional[str])->None:
-    """ Trains the model based on 
+    """ Trains the model
 
     Args:
         config_path (str): path to config file (eg:params.yaml)
@@ -72,7 +74,7 @@ def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:in
 
     logging_steps = len(data_encoded) // batch_size
 
-    model_name = f"{model_ckpt}-finetuned-exist21"
+    model_name = f"models/{model_ckpt}-finetuned-exist21-{fold}"
 
     training_args = TrainingArguments(output_dir=model_name,
                                 num_train_epochs=epochs,
@@ -82,7 +84,7 @@ def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:in
                                 weight_decay=wt_deacy,
                                 eval_strategy="epoch",
                                 disable_tqdm=False,
-                                # logging_steps=logging_steps,
+                                logging_steps=logging_steps,
                                 push_to_hub=False,
                                 log_level="error")
 
@@ -98,6 +100,10 @@ def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:in
     # Train the model
     trainer.train()
 
+    log_history = pd.DataFrame(trainer.state.log_history)
+
+    log_history.to_csv(f"src/logs/{model_name}.csv", index=False)
+    logger.info(f"Logs saved at src/logs/{model_name}.csv")
 
 if __name__=="__main__":
     arg_parser = argparse.ArgumentParser()
