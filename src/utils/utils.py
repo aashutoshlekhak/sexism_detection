@@ -1,9 +1,10 @@
 import yaml
 import os
 import pandas as pd
+import torch
 import matplotlib.pyplot as plt
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from loguru import logger
-
 
 def load_yaml(config_path:str)->dict:
     """Load config yaml file
@@ -35,7 +36,6 @@ def append_to_yaml(config_path:str, data_to_append:dict, yaml_key:str)->None:
         yaml.safe_dump(old_data, file)
         
     logger.info("Config added to the YAML file")
-
 
 
 def visualize_trainer(log_path:str)-> None:
@@ -78,4 +78,3 @@ def visualize_trainer(log_path:str)-> None:
     plt.savefig(f'{full_path}/accuracy_plot.svg', format='svg')
 
     logger.info(f"Accuracy and Loss Plot Saved at {full_path}")
-    
