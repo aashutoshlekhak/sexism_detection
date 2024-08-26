@@ -117,7 +117,7 @@ def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:in
     logger.info(f"Logs saved at {log_path}")
 
     visualize_trainer(log_path)
-
+    
 if __name__=="__main__":
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument("--config", dest="config", required=True)

@@ -26,7 +26,7 @@ def preprocess_text(text:str)->str:
     return text
 
 
-def preprocess_data(config_path:str, data_name:str)->None:
+def preprocess_data(config_path:str, data_name:str, split:str)->None:
     """Preprocess the dataset (csv or tsv files) text column
 
     Args:
@@ -35,8 +35,8 @@ def preprocess_data(config_path:str, data_name:str)->None:
 
     """
     config = load_yaml(config_path)
-    raw_data_path = config["data"][data_name]["raw"]
-    preprocess_data_path = config["data"][data_name]["preprocessed"]
+    raw_data_path = config["data"][split][data_name]["raw"]
+    preprocess_data_path = config["data"][split][data_name]["preprocessed"]
     if raw_data_path.split(".")[-1] == "tsv":
         df = pd.read_csv(raw_data_path, delimiter="\t")
     else:
@@ -51,5 +51,6 @@ if __name__=="__main__":
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument("--config", dest="config", required=True)
     arg_parser.add_argument("--data-name",dest="data_name", required=True)
+    arg_parser.add_argument("--split",dest="split", required=True)
     args = arg_parser.parse_args()
-    preprocess_data(args.config, args.data_name)
+    preprocess_data(args.config, args.data_name, args.split)
