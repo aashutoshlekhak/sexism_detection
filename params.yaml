@@ -1,14 +1,24 @@
 base:
   random_seed: 31
 data:
-  exist:
-    raw: data/raw/exist/EXIST2021_training.tsv
-    preprocessed: data/preprocessed/exist/EXIST2021_training_preprocessed.csv
-    augmented: data/augmented/exist/EXIST2021_training_augmented.csv
-    aug_preprocessed: data/augmented/exist/EXIST2021_training_augmented_preprocessed.csv
-  csmb:
-    raw: data/raw/csmb/sexism_data.csv
-    preprocessed: data/preprocessed/csmb/sexism_data.csv
+  train:
+    exist:
+      raw: data/raw/exist/EXIST2021_training.tsv
+      preprocessed: data/preprocessed/exist/EXIST2021_training_preprocessed.csv
+      augmented: data/augmented/exist/EXIST2021_training_augmented.csv
+      aug_preprocessed: data/augmented/exist/EXIST2021_training_augmented_preprocessed.csv
+    csmb:
+      original: data/raw/csmb/sexism_data.csv
+      raw: data/raw/csmb/sexism_train_data.csv
+      preprocessed: data/preprocessed/csmb/sexism_test_data.csv
+  test:
+    exist:
+      raw: data/raw/exist/EXIST2021_test_labeled.tsv
+      preprocessed: data/preprocessed/exist/EXIST2021_test_preprocessed.csv
+    csmb:
+      raw: data/raw/csmb/sexism_data_test.csv
+      preprocessed: data/preprocessed/csmb/sexism_data_preprocessed_test.csv
+
 base_model:
   distil_bert: 
     model: distilbert-base-uncased
