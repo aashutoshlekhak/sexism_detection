@@ -24,7 +24,7 @@ base_model:
     model: distilbert-base-uncased
     hyper_params:
       batch_size: 16
-      epochs: 1
+      epochs: 5
       lr: 2e-5
       wt_deacy: 0.01
 
