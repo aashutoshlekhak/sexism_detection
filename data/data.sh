@@ -3,7 +3,7 @@ mkdir -p data/raw/exist
 cd data/raw/exist
 echo "Downloading exist dataset"
 gdown https://drive.google.com/uc?id=1-5L3Q_qy6lpOQUDrNM9q_4q0wwGR-zFr
-gdown https://drive.google.com/uc?id=1-C5K9x2-rQAAi7wRwt4aMqkW8qcntLqC
+gdown https://drive.google.com/uc?id=1-6jjL9krpxh680Z2fFfEsbl81EvXbK_o
 
 cd ../../.. 
 mkdir -p data/raw/csmb
