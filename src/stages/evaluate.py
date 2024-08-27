@@ -15,7 +15,6 @@ sys.path.insert(0, os.getcwd())
 from src.utils.utils import load_yaml
 
 
-
 def load_model(model_path: str, num_labels:int):
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
