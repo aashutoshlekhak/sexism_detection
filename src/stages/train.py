@@ -73,9 +73,9 @@ def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:in
     else:
         output_dir = os.path.join("models", model_name, data_type,data_name,f"fold_{fold}")
 
-    os.makedirs(output_dir, exist_ok=True)
-    output_dir = os.makedirs(os.path.join("models", f"{model_name}/{data_type}/{fold}"), exist_ok=True) # models/distil-bert/raw/fold/
+    # os.makedirs(output_dir, exist_ok=True)
     output_dir = f"{output_dir}/{model_ckpt}"
+    os.makedirs(output_dir, exist_ok=True)
 
     training_args = TrainingArguments(output_dir=output_dir,
                                       report_to=None,
