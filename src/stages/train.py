@@ -60,7 +60,7 @@ def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:in
         return tokenizer(batch["text"], padding=True, truncation=True)
     
 
-    data_path = config["data"][data_name][data_type]
+    data_path = config["data"]["train"][data_name][data_type]
     dataset_path = os.path.join(os.path.dirname(data_path), os.path.basename(data_path).split(".")[0])
     fold_data = load_from_disk(f"{dataset_path}/folds/fold_{fold}")
     fold_data = fold_data.select_columns(['text', target_name])
