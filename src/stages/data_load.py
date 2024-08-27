@@ -15,6 +15,7 @@ def load_data(config_path:str, data_name:str, data_type:str, split:str)->None:
         config_path (str): path to config file (eg:params.yaml)
         data_name (str): exist or csmb
         data_type (str): raw, processed or augmented
+        split (str): train or test
     """
     config = load_yaml(config_path)
 
