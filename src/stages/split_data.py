@@ -20,7 +20,7 @@ def split_data(config_path:str, data_name:str,data_type:str)->None:
 
     config = load_yaml(config_path)
     kf = KFold(n_splits=10, shuffle=True, random_state=config["base"]["random_seed"])
-    save_path = config["data"][data_name][data_type]
+    save_path = config["data"]["train"][data_name][data_type]
     dataset_path = os.path.join(os.path.dirname(save_path), os.path.basename(save_path).split(".")[0])
     fold_save_dir = os.path.join(dataset_path, "folds")
     dataset = load_from_disk(dataset_path)
