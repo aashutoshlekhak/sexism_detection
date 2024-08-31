@@ -32,7 +32,7 @@ def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:in
         config_path (str): path to config file (eg:params.yaml)
         data_name (str): exist or csmb
         data_type (str): raw, processed or augmented
-        model_name (str): name of the model to fine-tune (eg: distil_bert)
+        model_name (str): name of the model to fine-tune (eg: tiny-llama. llama3, phi3)
         fold (int): the fold of dataset to be used (eg: 0,1,2,3,4,5,6,7,8,9)
         task (Optional[str]): "task1" or "task2" (only for exist dataset)
     """

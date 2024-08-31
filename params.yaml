@@ -30,10 +30,25 @@ base_model:
   gradient_accumulation_steps: 4
   tiny-llama:
     model: TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T
+    hyper_params:
+      batch_size: 16
+      epochs: 5
+      lr: 2e-5
+      wt_deacy: 0.01
   llama3:
     model: meta-llama/Meta-Llama-3-8B
+    hyper_params:
+      batch_size: 16
+      epochs: 5
+      lr: 2e-5
+      wt_deacy: 0.01
   phi3:
     model: microsoft/Phi-3-mini-4k-instruct
+    hyper_params:
+      batch_size: 16
+      epochs: 5
+      lr: 2e-5
+      wt_deacy: 0.01
 quantization:
   load_in_4bit: True
   bnb_4bit_quant_type: nf4
