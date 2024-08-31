@@ -24,8 +24,8 @@ def augment_data(config_path:str)->None:
         config_path (str): path to config file (params.yaml)
     """
     config = load_yaml(config_path)
-    raw_data_path = config["data"]["exist"]["raw"]
-    augmented_data_path = config["data"]["exist"]["augmented"]
+    raw_data_path = config["data"]["train"]["exist"]["raw"]
+    augmented_data_path = config["data"]["train"]["exist"]["augmented"]
 
     df = pd.read_csv(raw_data_path, delimiter='\t')
 
