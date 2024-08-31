@@ -9,7 +9,7 @@ cd ../../..
 mkdir -p data/raw/csmb
 cd data/raw/csmb
 echo "Downloading csmb dataset"
-gdown https://drive.google.com/uc?id=1jfE609X87uqpUWMLiJq_HN7Y7BVLlO_c
+gdown https://drive.google.com/uc?id=13bxeva7zLSDmWqsSU3EqY6QdFNR03Bca
 mkdir -p data/preprocessed/exist
 mkdir -p data/preprocessed/csmb
 mkdir -p data/augmented/exist
