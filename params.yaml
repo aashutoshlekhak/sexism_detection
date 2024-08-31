@@ -27,6 +27,29 @@ base_model:
       epochs: 5
       lr: 2e-5
       wt_deacy: 0.01
+  gradient_accumulation_steps: 4
+  tiny-llama:
+    model: TinyLlama/TinyLlama-1.1B-intermediate-step-1431k-3T
+  llama3:
+    model: meta-llama/Meta-Llama-3-8B
+  phi3:
+    model: microsoft/Phi-3-mini-4k-instruct
+quantization:
+  load_in_4bit: True
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_use_double_quant: True
+lora:
+  r: 16
+  lora_alpha: 8
+  target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  lora_dropout: 0.15
+  bias: none
+  task_type: SEQ_CLS
+  
 
 # trained_models:
 #   exist:
