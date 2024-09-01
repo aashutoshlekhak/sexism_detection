@@ -78,7 +78,7 @@ def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:in
     os.makedirs(output_dir, exist_ok=True)
 
     training_args = TrainingArguments(output_dir=output_dir,
-                                      report_to=None,
+                                      report_to="none",
                                 num_train_epochs=epochs,
                                 learning_rate=lr,
                                 per_device_train_batch_size=batch_size,
