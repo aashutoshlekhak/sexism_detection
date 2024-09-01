@@ -77,7 +77,7 @@ def train(config_path:str, data_name:str, data_type:str, model_name:str, fold:in
         num_labels = len(class_labels)
         target_name = "sexist"
 
-    model = (AutoModelForSequenceClassification.from_pretrained(model_ckpt, quantization_config=quantization_config, num_labels=num_labels).to(device))
+    model = (AutoModelForSequenceClassification.from_pretrained(model_ckpt, quantization_config=quantization_config, num_labels=num_labels))
     model = prepare_model_for_kbit_training(model)
     model = get_peft_model(model, lora_config)
     tokenizer= AutoTokenizer.from_pretrained(model_ckpt)
