@@ -8,7 +8,6 @@ from loguru import logger
 sys.path.insert(0, os.getcwd())
 from src.utils.utils import load_yaml
 
-# TODO: there are some problems while loading the final saved csv file 
 
 LANGUAGES = ["en", "es"] # English, Spanish
 
@@ -33,6 +32,7 @@ def augment_data(config_path:str)->None:
 
     translated_data = {
         "task1": list(),
+        "task2": list(),
         "text": list()
     }
 
@@ -41,16 +41,20 @@ def augment_data(config_path:str)->None:
         
         for _, row in tqdm(lang_df.iterrows()):
             task1 = row["task1"]
+            task2 = row["task2"]
             text =  row["text"]
             translated_text = translate(text,lang)
             translated_data["task1"].append(task1)
+            translated_data["task2"].append(task2)
             translated_data["text"].append(translated_text)
 
     augmented_df = pd.DataFrame(translated_data)
+    # Merge original df and translated df
+    final_df = pd.concat([df[["task1", "task2", "text"]], augmented_df])
     # Save data
-    augmented_df.to_csv(augmented_data_path, index=False)
+    final_df.to_csv(augmented_data_path, index=False)
 
-    logger.info(f"Saved {augmented_data_path} \n with shape {augmented_df.shape}")
+    logger.info(f"Saved {augmented_data_path} \n with shape {final_df.shape}")
 
 if __name__=="__main__":
     arg_parser = argparse.ArgumentParser()
